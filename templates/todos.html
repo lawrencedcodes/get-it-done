@@ -1,26 +1,45 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Get It Done!</h1>
-    <form method='post'>
+    <div id="header">
+     <h1>Get It Done!</h1>
+      <form method='post'>  
         <label>
             New Task:
             <input type="text" name='task' />
         </label>
         <input type="submit" value='Add Task' />
-    </form>
+     </form>
+    </div>
+      <hr />
 
-    <hr />
-
-    {% if tasks|length == 0 %}
-    <p>No tasks yet</p>
-    {% else %}
+      {% if tasks|length == 0 %}
+      <p>No tasks yet</p>
+      {% else %}
 
         <ul>
             {% for task in tasks %}
-            <li>{{task}}</li>
+            <li>{{task.name}}
+                <form method="POST" action="/delete-task" style="display:inline-block;">
+                    &#9998;
+                    <input type="hidden" name="task-id" value="{{task.id}}" />
+                    <input type="submit" value="Done!" />
+                </form>
+            </li>
             {% endfor %}
         </ul>
+    
+      {% endif %}
 
-    {% endif %}
+     <hr />
+
+        
+
+     <ul>
+     <h2>Completed</h2>
+        {% for task in completed_tasks %}
+        <li>{{task.name}}</li>
+        {% endfor %}
+     </ul>
+    
 {% endblock %}

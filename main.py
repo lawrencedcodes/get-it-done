@@ -85,16 +85,15 @@ def logout():
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
-
+    owner = User.query.filter_by(email=session['email']).first()
     if request.method == 'POST':
         task_name = request.form['task']
-        owner = User.query.filter_by(email=session['email']).first()
         new_task = Task(task_name, owner)
         db.session.add(new_task)
         db.session.commit()
 
-    tasks = Task.query.filter_by(completed=False).all()
-    completed_tasks = Task.query.filter_by(completed=True).all()
+    tasks = Task.query.filter_by(completed=False,owner=owner).all()
+    completed_tasks = Task.query.filter_by(completed=True,owner=owner).all()
     return render_template('todos.html',title="Get It Done!", 
         tasks=tasks, completed_tasks=completed_tasks)
 

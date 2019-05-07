@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+<header id="header">
 <h1>Log in to Get It Done!</h1>
-<p>If you don't have an account, you may <a href="/register">register</a> for one</p>
+<p align="center">If you don't have an account, you may <a href="/register">register</a> for one</p>
+</header>
 <form action="/login" method="post">
     <table>
         <tr>

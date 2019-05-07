@@ -8,8 +8,11 @@ body {
     border-bottom-width: 60px;
     border-radius: 36px;
 }
+#logout a {
+    margin-left: 5px;
+}
 #header {
-    background-color: #3232ff;
+    background-color: #3211ff;
     color: white;
     padding: 5px
 }
@@ -18,4 +21,8 @@ body {
 }
 ul li {
     margin-top: 5px;
+}
+.error {
+    color: red;
+    font-style: italic;
 }
